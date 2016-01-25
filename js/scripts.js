@@ -1,6 +1,6 @@
-function Places(location,ladmarks, timeOfYear, notes){
+function Places(location,landmarks, timeOfYear, notes){
   this.location = location;
-  this.ladmarks = ladmarks;
+  this.landmarks = landmarks;
   this.timeOfYear = timeOfYear;
   this.notes = notes;
   // this.fullName = function() {
@@ -9,21 +9,26 @@ function Places(location,ladmarks, timeOfYear, notes){
 }
 
 $(function(){
-  $("form#new-contact").submit(function(event){
+  $("form#newPlace").submit(function(event){
     event.preventDefault();
-    var firstName = $("#new-first-name").val();
-    var lastName = $("#new-last-name").val();
-    var newContact = new Contact(firstName,lastName);
-    $("#contacts").append("<li><span class='contact'>"+newContact.fullName()+"</span></li>");
+    var location = $("#location").val();
+    var landmarks = $("#landmarks").val();
+    var timeOfYear = $("#timeOfYear").val();
+    var notes = $("#notes").val();
+    var newPlace = new Places(location,landmarks, timeOfYear, notes);
+    $("#places").append("<li><span class='place'>"+newPlace.location+"</span></li>");
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
+    $("input#location").val("");
+    $("input#landmarks").val("");
+    $("input#timeOfYear").val("");
+    $("input#notes").val("");
 
-    $('.contact').last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.fullName());
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
+    $('.place').last().click(function() {
+      $("#show-place").show();
+      $("#show-place h2").text(newPlace.location);
+      $(".landmarks").text(newPlace.landmarks);
+      $(".time").text(newPlace.timeOfYear);
+      $(".notes").text(newPlace.notes);
     });
   });
 
